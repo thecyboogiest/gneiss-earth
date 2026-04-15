@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "gneiss-earth:kaolinite",
+  "result": {
+    "id": "gneiss-earth:kaolinite_bricks",
+    "count": 1
+  }
+}

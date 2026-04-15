@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "gneiss-earth:feldspar",
+  "result": {
+    "id": "gneiss-earth:feldspar_bricks",
+    "count": 1
+  }
+}

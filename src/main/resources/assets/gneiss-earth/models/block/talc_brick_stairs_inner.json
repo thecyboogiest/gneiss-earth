@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "gneiss-earth:block/talc_bricks",
+    "top":    "gneiss-earth:block/talc_bricks",
+    "side":   "gneiss-earth:block/talc_bricks"
+  }
+}

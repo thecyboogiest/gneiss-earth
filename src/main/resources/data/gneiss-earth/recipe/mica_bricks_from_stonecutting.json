@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "gneiss-earth:mica",
+  "result": {
+    "id": "gneiss-earth:mica_bricks",
+    "count": 1
+  }
+}

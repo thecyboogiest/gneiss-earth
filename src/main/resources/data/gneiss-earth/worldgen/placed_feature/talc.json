@@ -1,0 +1,13 @@
+{
+  "feature": "gneiss-earth:talc",
+  "placement": [
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "min_inclusive": { "absolute": 39 },
+        "max_inclusive": { "absolute": 40 }
+      }
+    }
+  ]
+}

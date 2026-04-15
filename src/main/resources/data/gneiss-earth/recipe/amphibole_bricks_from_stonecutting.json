@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "gneiss-earth:amphibole",
+  "result": {
+    "id": "gneiss-earth:amphibole_bricks",
+    "count": 1
+  }
+}

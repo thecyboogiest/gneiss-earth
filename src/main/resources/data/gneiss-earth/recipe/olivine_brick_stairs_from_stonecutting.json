@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "gneiss-earth:olivine_bricks",
+  "result": {
+    "id": "gneiss-earth:olivine_brick_stairs",
+    "count": 1
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "gneiss-earth:block/kaolinite_bricks",
+    "top":    "gneiss-earth:block/kaolinite_bricks",
+    "side":   "gneiss-earth:block/kaolinite_bricks"
+  }
+}

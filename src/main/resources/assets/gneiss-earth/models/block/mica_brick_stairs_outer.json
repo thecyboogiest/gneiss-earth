@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "gneiss-earth:block/mica_bricks",
+    "top":    "gneiss-earth:block/mica_bricks",
+    "side":   "gneiss-earth:block/mica_bricks"
+  }
+}

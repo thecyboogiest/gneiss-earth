@@ -1,0 +1,32 @@
+{
+  "values": [
+    "gneiss-earth:amphibole",
+    "gneiss-earth:talc",
+    "gneiss-earth:mica",
+    "gneiss-earth:feldspar",
+    "gneiss-earth:kaolinite",
+    "gneiss-earth:olivine",
+    "gneiss-earth:gabbro",
+    "gneiss-earth:amphibole_bricks",
+    "gneiss-earth:talc_bricks",
+    "gneiss-earth:mica_bricks",
+    "gneiss-earth:feldspar_bricks",
+    "gneiss-earth:kaolinite_bricks",
+    "gneiss-earth:olivine_bricks",
+    "gneiss-earth:gabbro_bricks",
+    "gneiss-earth:amphibole_brick_stairs",
+    "gneiss-earth:talc_brick_stairs",
+    "gneiss-earth:mica_brick_stairs",
+    "gneiss-earth:feldspar_brick_stairs",
+    "gneiss-earth:kaolinite_brick_stairs",
+    "gneiss-earth:olivine_brick_stairs",
+    "gneiss-earth:gabbro_brick_stairs",
+    "gneiss-earth:amphibole_brick_slab",
+    "gneiss-earth:talc_brick_slab",
+    "gneiss-earth:mica_brick_slab",
+    "gneiss-earth:feldspar_brick_slab",
+    "gneiss-earth:kaolinite_brick_slab",
+    "gneiss-earth:olivine_brick_slab",
+    "gneiss-earth:gabbro_brick_slab"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "gneiss-earth:block/amphibole_brick_slab" },
+    "type=double": { "model": "gneiss-earth:block/amphibole_bricks" },
+    "type=top":    { "model": "gneiss-earth:block/amphibole_brick_slab_top" }
+  }
+}

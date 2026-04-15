@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [{ "condition": "minecraft:survives_explosion" }],
+          "name": "gneiss-earth:feldspar_brick_stairs"
+        }
+      ]
+    }
+  ],
+  "random_sequence": "gneiss-earth:blocks/feldspar_brick_stairs"
+}

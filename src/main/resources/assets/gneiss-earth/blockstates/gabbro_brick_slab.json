@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "gneiss-earth:block/gabbro_brick_slab" },
+    "type=double": { "model": "gneiss-earth:block/gabbro_bricks" },
+    "type=top":    { "model": "gneiss-earth:block/gabbro_brick_slab_top" }
+  }
+}

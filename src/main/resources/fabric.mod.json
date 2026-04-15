@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "gneiss-earth",
+	"version": "${version}",
+	"name": "Gneiss Earth",
+	"description": "Adds 7 stone variants to fill out the underground",
+	"authors": [
+		"Joven-Cyboogiest"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/gneiss-earth/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.cyboogiest.gneissearth.GneissEarth"
+		],
+		"client": [
+			"com.cyboogiest.gneissearth.client.GneissEarthClient"
+		]
+	},
+	"mixins": [
+		"gneiss-earth.mixins.json",
+		{
+			"config": "gneiss-earth.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.1",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
