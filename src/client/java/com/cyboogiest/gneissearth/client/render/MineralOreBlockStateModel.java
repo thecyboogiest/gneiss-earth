@@ -1,5 +1,6 @@
 package com.cyboogiest.gneissearth.client.render;
 
+import com.cyboogiest.gneissearth.worldgen.MineralLayers;
 import net.fabricmc.fabric.api.client.model.loading.v1.wrapper.WrapperBlockStateModel;
 import net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView;
 import net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter;
@@ -20,8 +21,7 @@ import java.util.function.Predicate;
 
 public class MineralOreBlockStateModel extends WrapperBlockStateModel {
 
-    // Must match MineralLayersMixin.getMineralForY
-    private static final int[] Y_THRESHOLDS = { 10, 12, 18, 25, 39, 45, 60 };
+    // Must stay in sync with MineralLayers.Y_THRESHOLDS (same order)
     private static final Identifier[] MINERAL_IDS = {
         Identifier.fromNamespaceAndPath("gneiss-earth", "block/amphibole"),
         Identifier.fromNamespaceAndPath("gneiss-earth", "block/olivine"),
@@ -48,13 +48,16 @@ public class MineralOreBlockStateModel extends WrapperBlockStateModel {
     @Override
     public void emitQuads(QuadEmitter emitter, BlockAndTintGetter level, BlockPos pos,
                           BlockState state, RandomSource random, Predicate<@Nullable Direction> cullTest) {
-        Material.Baked background = getMineralMaterial(pos.getY());
-        if (background == null) {
+        // Apply the same noise offset used during world-gen so the background texture matches
+        // the mineral that was actually placed at this column.
+        int index = MineralLayers.mineralIndex(pos.getY(), pos.getX(), pos.getZ());
+        if (index < 0) {
             // Above all mineral layers — fall back to vanilla rendering
             super.emitQuads(emitter, level, pos, state, random, cullTest);
             return;
         }
 
+        Material.Baked background = getMineralMaterial(index);
         Material.Baked overlay = getOverlayMaterial();
 
         for (Direction face : Direction.values()) {
@@ -73,7 +76,7 @@ public class MineralOreBlockStateModel extends WrapperBlockStateModel {
         }
     }
 
-    private Material.Baked getMineralMaterial(int y) {
+    private Material.Baked getMineralMaterial(int index) {
         if (mineralMaterials == null) {
             var atlas = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(BLOCK_ATLAS);
             mineralMaterials = new Material.Baked[MINERAL_IDS.length];
@@ -81,10 +84,7 @@ public class MineralOreBlockStateModel extends WrapperBlockStateModel {
                 mineralMaterials[i] = new Material.Baked(atlas.getSprite(MINERAL_IDS[i]), false);
             }
         }
-        for (int i = 0; i < Y_THRESHOLDS.length; i++) {
-            if (y < Y_THRESHOLDS[i]) return mineralMaterials[i];
-        }
-        return null;
+        return mineralMaterials[index];
     }
 
     private Material.Baked getOverlayMaterial() {

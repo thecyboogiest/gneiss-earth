@@ -1,6 +1,7 @@
 package com.cyboogiest.gneissearth.mixin;
 
 import com.cyboogiest.gneissearth.block.ModBlocks;
+import com.cyboogiest.gneissearth.worldgen.MineralLayers;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
@@ -16,10 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(NoiseBasedChunkGenerator.class)
 public class MineralLayersMixin {
 
-    // One noise period every ~333 blocks; ±35 block Y shift at the layer boundaries.
-    @Unique private static final double NOISE_SCALE     = 0.03;
-    @Unique private static final double NOISE_AMPLITUDE = 35.0;
-
     @Inject(method = "buildSurface", at = @At("RETURN"), require = 1)
     private void applyMineralLayers(CallbackInfo ci,
                                      @Local(argsOnly = true, name = "protoChunk") ChunkAccess chunk) {
@@ -32,7 +29,7 @@ public class MineralLayersMixin {
                 int worldX = minX + x;
                 int worldZ = minZ + z;
                 // Sample noise once per column and apply as a Y shift to all boundaries
-                int yOffset = (int) (layerNoise(worldX, worldZ) * NOISE_AMPLITUDE);
+                int yOffset = MineralLayers.yOffset(worldX, worldZ);
 
                 for (int y = chunk.getMinY(); y < chunk.getMaxY(); y++) {
                     pos.set(worldX, y, worldZ);
@@ -46,40 +43,6 @@ public class MineralLayersMixin {
                 }
             }
         }
-    }
-
-    /**
-     * Smooth value noise in -1..1, one period every 1/NOISE_SCALE blocks.
-     * Uses bilinear interpolation with smoothstep on a hashed integer grid.
-     */
-    @Unique
-    private static double layerNoise(int worldX, int worldZ) {
-        double fx = worldX * NOISE_SCALE;
-        double fz = worldZ * NOISE_SCALE;
-        int ix = (int) Math.floor(fx);
-        int iz = (int) Math.floor(fz);
-        double rx = fx - ix;
-        double rz = fz - iz;
-        // Smoothstep — avoids visible grid lines at cell boundaries
-        rx = rx * rx * (3.0 - 2.0 * rx);
-        rz = rz * rz * (3.0 - 2.0 * rz);
-        double v00 = hash2(ix,     iz);
-        double v10 = hash2(ix + 1, iz);
-        double v01 = hash2(ix,     iz + 1);
-        double v11 = hash2(ix + 1, iz + 1);
-        double top    = v00 + rx * (v10 - v00);
-        double bottom = v01 + rx * (v11 - v01);
-        return (top + rz * (bottom - top)) * 2.0 - 1.0; // remap 0..1 → -1..1
-    }
-
-    /** Avalanche hash for a 2D integer grid point, returns 0..1. */
-    @Unique
-    private static double hash2(int x, int z) {
-        long n = (long) x * 1619L + (long) z * 31337L + 0x4B5F2A1C3D8E6FL;
-        n ^= n >>> 17;
-        n *= 0x45d9f3b37197344dL;
-        n ^= n >>> 16;
-        return (n & 0x7FFFFFFFFFFFFFFFL) / (double) 0x7FFFFFFFFFFFFFFFL;
     }
 
     @Unique
